@@ -5,7 +5,7 @@ type IProps = {
 };
 const UsersLayout = async ({ children }: IProps) => {
   return (
-    <aside className="w-1/4 flex">
+    <aside className="w-2/4 flex">
       {/* @ts-expect-error Async Server Component */}
       <Users />
       <div>{children}</div>
