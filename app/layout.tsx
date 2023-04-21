@@ -1,5 +1,5 @@
 import "./globals.css";
-import Nav from "./Nav";
+import Nav from "./components/Nav";
 
 export const metadata = {
   title: "Create Next App",
@@ -14,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="px-10 py-4">
+        {/* @ts-expect-error Async Server Component */}
         <Nav />
         <main>{children}</main>
       </body>
