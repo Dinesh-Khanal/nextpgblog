@@ -1,5 +1,4 @@
 import { User } from "@prisma/client";
-//import { getUsers } from "../../lib/users";
 import { getUsers } from "@/lib/users";
 import Link from "next/link";
 const Users = async () => {
