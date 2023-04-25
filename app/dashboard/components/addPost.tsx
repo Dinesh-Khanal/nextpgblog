@@ -8,14 +8,16 @@ const API = axios.create({
   baseURL: "http://localhost:3000/api",
 });
 const AddPost = () => {
+  const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   //   const { mutate } = useMutation(
   //     async (title) => await API.post("/posts/addPost", { title })
   //   );
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
-    await API.post("/post", { title });
+    await API.post("/post", { title, content });
     setTitle("");
+    setContent("");
   };
   return (
     <QueryWrapper>
@@ -23,19 +25,28 @@ const AddPost = () => {
         onSubmit={submitHandler}
         className="flex flex-col gap-2 items-center"
       >
-        <textarea
+        <input
+          type="text"
           name="title"
           id="title"
-          className="px-6 py-2 m-6 text-xl w-full border"
-          placeholder="What's on your mind?"
-          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Enter the title"
           value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="px-6 py-2 mb-2 text-xl w-full border"
+        />
+        <textarea
+          name="content"
+          id="content"
+          className="px-6 py-2 mb-6 text-xl w-full border"
+          placeholder="What's on your mind?"
+          onChange={(e) => setContent(e.target.value)}
+          value={content}
         ></textarea>
         <div className="flex gap-2 justify-center items-center">
-          <p className={title.length > 300 ? "text-red-700" : "text-black"}>
-            {title.length}/300
+          <p className={content.length > 300 ? "text-red-700" : "text-black"}>
+            {content.length}/300
           </p>
-          <button className="border rounded-md bg-gray-700 text-white p-2 w-full sm:w-32">
+          <button className="border rounded-md bg-gray-700 text-white p-2 w-full sm:w-40">
             Create new post
           </button>
         </div>

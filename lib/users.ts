@@ -27,3 +27,12 @@ export async function getUserById(id: string) {
     return { error };
   }
 }
+
+export async function getUserByEmail(email: string) {
+  try {
+    const user = await prisma.user.findUnique({ where: { email } });
+    return { user };
+  } catch (error) {
+    return { error };
+  }
+}
