@@ -1,6 +1,7 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useTransition } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const API = axios.create({
   baseURL: "http://localhost:3000/api",
@@ -8,11 +9,23 @@ const API = axios.create({
 const AddPost = () => {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [isFetching, setIsFetching] = useState(false);
+
+  const isMutating = isFetching || isPending;
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
+    setIsFetching(true);
     await API.post("/post", { title, content });
+    setIsFetching(false);
     setTitle("");
     setContent("");
+    startTransition(() => {
+      // Refresh the current route and fetch new data from the server without
+      // losing client-side browser or React state.
+      router.refresh();
+    });
   };
   return (
     <form onSubmit={submitHandler} className="flex flex-col gap-2 items-center">
@@ -37,7 +50,10 @@ const AddPost = () => {
         <p className={content.length > 300 ? "text-red-700" : "text-black"}>
           {content.length}/300
         </p>
-        <button className="border rounded-md bg-gray-700 text-white p-2 w-full sm:w-40">
+        <button
+          disabled={isMutating}
+          className="border rounded-md bg-gray-700 text-white p-2 w-full sm:w-40"
+        >
           Create new post
         </button>
       </div>
