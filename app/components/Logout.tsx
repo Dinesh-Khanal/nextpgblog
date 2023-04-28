@@ -8,17 +8,19 @@ type IProps = {
 };
 const Logout = ({ image }: IProps) => {
   return (
-    <div className="flex gap-6">
+    <div className="flex gap-6 items-center">
       <Link href="/dashboard">
         <Image
           width={32}
           height={32}
           src={image}
           alt="profile image"
-          className="rounded-xl"
+          className="rounded-full"
         />
       </Link>
-      <button onClick={() => signOut()}>Logout</button>
+      <button className="btn btn-primary" onClick={() => signOut()}>
+        Logout
+      </button>
     </div>
   );
 };
