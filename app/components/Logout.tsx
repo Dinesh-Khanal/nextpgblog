@@ -18,7 +18,7 @@ const Logout = ({ image }: IProps) => {
           className="rounded-full"
         />
       </Link>
-      <button className="btn btn-primary" onClick={() => signOut()}>
+      <button className="navLink" onClick={() => signOut()}>
         Logout
       </button>
     </div>

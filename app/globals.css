@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .navLink {
+    @apply text-gray-700 uppercase font-semibold hover:text-gray-400 relative;
+  }
+  .navLink::after {
+    @apply content-[''] bg-gray-700 w-0 h-1 rounded-xl absolute left-1/2 transform -translate-x-1/2 -bottom-1 duration-300;
+  }
+  .navLink:hover::after {
+    @apply w-[100%];
+  }
+}

@@ -13,10 +13,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="px-10 py-4">
+      <body className="w-full">
         {/* @ts-expect-error Async Server Component */}
         <Nav />
-        <main>{children}</main>
+        <main className="container mx-auto">{children}</main>
+        <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+        <div className="modal">
+          <div className="modal-box relative">
+            <label
+              htmlFor="my-modal-3"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
+            >
+              ✕
+            </label>
+            <h3 className="text-lg font-bold">RedPanda IT Solution</h3>
+            <p className="py-4">
+              RedPanda IT Solution is a non-profit organization situated in
+              Kathmandu, Nepal its main aim is to support people for the
+              preparation of 21st century Digital Nepal
+            </p>
+          </div>
+        </div>
       </body>
     </html>
   );
