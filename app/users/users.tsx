@@ -5,7 +5,7 @@ const Users = async () => {
   const usersData = await getUsers();
   const users = usersData.users;
   return (
-    <div className="center py-4 bg-stone-700 p-4 h-screen">
+    <div className="center bg-stone-700 p-4 h-screen">
       <h2 className="mb-4 text-xl font-medium text-white">Users List</h2>
       <ul className="flex flex-col text-sm text-white">
         {users?.map((user: User) => (

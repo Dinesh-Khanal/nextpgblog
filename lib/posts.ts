@@ -9,8 +9,8 @@ export async function getPosts() {
     return { error };
   }
 }
-
-export async function createPost(post: Post) {
+type NewPost = Omit<Post, "id">;
+export async function createPost(post: NewPost) {
   try {
     const postFromDb = await prisma.post.create({ data: post });
     return { post: postFromDb };
